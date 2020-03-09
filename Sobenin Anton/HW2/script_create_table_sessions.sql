@@ -6,4 +6,5 @@ CREATE TABLE IF NOT EXISTS tt.sessions
     end_dttm TIMESTAMP,
     PRIMARY KEY (session_id),
     FOREIGN KEY (user_id) REFERENCES tt.users (user_id)
+    ON UPDATE CASCADE ON DELETE RESTRICT
 );

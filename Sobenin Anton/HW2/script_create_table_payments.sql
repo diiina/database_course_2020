@@ -6,4 +6,5 @@ CREATE TABLE IF NOT EXISTS tt.payments
     payment_dttm TIMESTAMP,
     PRIMARY KEY (payments_id),
     FOREIGN KEY (user_id) REFERENCES tt.users (user_id)
+    ON UPDATE CASCADE ON DELETE RESTRICT
 );
