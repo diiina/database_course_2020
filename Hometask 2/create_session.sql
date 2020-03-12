@@ -4,5 +4,5 @@ CREATE TABLE Sessions(
     begin_dttm TIMESTAMP NOT NULL ,
     end_dttm TIMESTAMP NOT NULL,
     CONSTRAINT sessions_users_fk
-    FOREIGN KEY (session_id) REFERENCES Users(user_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
