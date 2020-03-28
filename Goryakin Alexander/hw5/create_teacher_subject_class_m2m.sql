@@ -1,0 +1,10 @@
+CREATE TABLE teacher_subject_class (
+	id int NOT NULL AUTO_INCREMENT,
+	teacher_id int NOT NULL,
+	subject_id int NOT NULL,
+	class_id int NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY(teacher_id) REFERENCES teachers(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(subject_id) REFERENCES subjects(id) ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(class_id) REFERENCES classes(id) ON UPDATE CASCADE ON DELETE RESTRICT
+);
