@@ -5,9 +5,9 @@ CREATE TABLE IF NOT EXISTS `zemlyanoy_db`.`position_changes` (
   `new_position` INT NOT NULL,
   `change_date` DATE NOT NULL,
   PRIMARY KEY (`change_id`),
-  INDEX `fk_position_changes_employee_id_idx` (`employee_id` ASC) VISIBLE,
-  INDEX `fk_position_changes_old_position_idx` (`old_position` ASC) VISIBLE,
-  INDEX `fk_position_changes_new_position_idx` (`new_position` ASC) VISIBLE,
+  INDEX `fk_position_changes_employee_id_idx` (`employee_id` ASC),
+  INDEX `fk_position_changes_old_position_idx` (`old_position` ASC),
+  INDEX `fk_position_changes_new_position_idx` (`new_position` ASC),
   CONSTRAINT `fk_position_changes_employee_id`
     FOREIGN KEY (`employee_id`)
     REFERENCES `zemlyanoy_db`.`employees` (`employee_id`)
