@@ -1,6 +1,6 @@
 CREATE TABLE students (
 	id int NOT NULL AUTO_INCREMENT,
-	name varchar(45) NOT NULL,
+	stud_name varchar(45) NOT NULL,
 	patronymic varchar(45) NOT NULL,
 	surname varchar(45) NOT NULL,
 	birthdate datetime NOT NULL,
