@@ -1,5 +1,5 @@
 CREATE DATABASE fencing_school_db;
- 
+
 USE fencing_school_db;
 
 CREATE TABLE members (
@@ -17,6 +17,23 @@ CREATE TABLE rooms (
     ceiling_height INT NOT NULL,
     rent_per_hour INT NOT NULL,
     PRIMARY kEY(room_id)
+);
+
+CREATE TABLE timeslots (
+	timeslot_id INT NOT NULL AUTO_INCREMENT,
+    start_time TIME NOT NULL,
+    end_time TIME NOT NULL,
+    weekday VARCHAR(32) NOT NULL,
+    PRIMARY KEY(timeslot_id)   
+);
+
+CREATE TABLE fencing_events (
+	event_id INT NOT NULL AUTO_INCREMENT,
+    title VARCHAR(32) NOT NULL,
+    start_dttm DATETIME NOT NULL,
+    end_dttm DATETIME NOT NULL,
+    adress VARCHAR(32) NOT NULL,
+    PRIMARY KEY(event_id)
 );
 
 CREATE TABLE trainers (
@@ -45,40 +62,11 @@ CREATE TABLE students (
     discipline_id INT NOT NULL,
     PRIMARY KEY(student_id),
     FOREIGN KEY(member_id)
-	  REFERENCES member(member_id)
+	  REFERENCES members(member_id)
       ON UPDATE CASCADE ON DELETE RESTRICT,
 	FOREIGN KEY(discipline_id)
 	  REFERENCES disciplines(discipline_id)
       ON UPDATE CASCADE ON DELETE RESTRICT
-);
-
-CREATE TABLE fencing_events (
-	event_id INT NOT NULL AUTO_INCREMENT,
-    title VARCHAR(32) NOT NULL,
-    start_dttm DATETIME NOT NULL,
-    end_dttm DATETIME NOT NULL,
-    adress VARCHAR(32) NOT NULL,
-    member_id INT NOT NULL,
-    PRIMARY KEY(event_id),
-    FOREIGN KEY(member_id)
-		REFERENCES members(member_id)
-        ON UPDATE CASCADE ON DELETE RESTRICT
-);
-
-CREATE TABLE timeslots (
-	timeslot_id INT NOT NULL AUTO_INCREMENT,
-    start_time TIME NOT NULL,
-    end_time TIME NOT NULL,
-    weekday VARCHAR(32) NOT NULL,
-    discipline_id INT NOT NULL,
-    room_id INT NOT NULL,
-    PRIMARY KEY(timeslot_id),
-    FOREIGN KEY(discipline_id)
-		REFERENCES disciplines(discipline_id)
-        ON UPDATE CASCADE ON DELETE RESTRICT,
-	FOREIGN KEY(room_id)
-		REFERENCES rooms(room_id)
-        ON UPDATE CASCADE ON DELETE RESTRICT    
 );
 
 CREATE TABLE personal_equipment (
@@ -86,7 +74,7 @@ CREATE TABLE personal_equipment (
     member_id INT NOT NULL,
     room_id INT NOT NULL,
     eq_type VARCHAR(32) NOT NULL,
-    PRIMARY KEY(personal_equipment_id)
+    PRIMARY KEY(personal_equipment_id),
     FOREIGN KEY(member_id)
 		REFERENCES members(member_id)
         ON UPDATE CASCADE ON DELETE RESTRICT,
@@ -106,4 +94,21 @@ CREATE TABLE club_equipment (
 	FOREIGN KEY(room_id)
 		REFERENCES rooms(room_id)
 		ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE taken_time (
+	taken_time_id INT NOT NULL AUTO_INCREMENT,
+    timeslot_id INT NOT NULL,
+    room_id INT NOT NULL,
+    discipline_id INT NOT NULL,
+    PRIMARY KEY(taken_time_id),
+    FOREIGN KEY(room_id)
+		REFERENCES rooms(room_id)
+		ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(discipline_id)
+	    REFERENCES disciplines(discipline_id)
+        ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(timeslot_id)
+	    REFERENCES timeslots(timeslot_id)
+        ON UPDATE CASCADE ON DELETE RESTRICT
 );
