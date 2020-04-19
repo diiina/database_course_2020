@@ -4,3 +4,4 @@ CREATE TABLE IF NOT EXISTS `zemlyanoy_db`.`positions` (
   PRIMARY KEY (`position_id`))
 ENGINE = InnoDB
 COMMENT = 'Table of positions in the supposed company that can be held.'
+;

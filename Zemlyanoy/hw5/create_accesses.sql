@@ -5,8 +5,8 @@ CREATE TABLE IF NOT EXISTS `zemlyanoy_db`.`accesses` (
   `start_time` DATETIME NOT NULL COMMENT 'To represent permission being granted since a specific moment, because it could be granted only for a specific time period.',
   `end_time` DATETIME NULL COMMENT 'A permission can be without a definite end time, but it can have one either.',
   PRIMARY KEY (`access_id`),
-  INDEX `employee_id_idx` (`employee_id` ASC) VISIBLE,
-  INDEX `room_id_idx` (`room_id` ASC) VISIBLE,
+  INDEX `employee_id_idx` (`employee_id` ASC),
+  INDEX `room_id_idx` (`room_id` ASC),
   CONSTRAINT `fk_accesses_employee_id`
     FOREIGN KEY (`employee_id`)
     REFERENCES `zemlyanoy_db`.`employees` (`employee_id`)

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `zemlyanoy_db`.`employees` (
   `position_id` INT NOT NULL,
   `hired_date` DATE NOT NULL,
   PRIMARY KEY (`employee_id`),
-  INDEX `position_id_idx` (`position_id` ASC) VISIBLE,
+  INDEX `position_id_idx` (`position_id` ASC),
   CONSTRAINT `fk_position_id`
     FOREIGN KEY (`position_id`)
     REFERENCES `zemlyanoy_db`.`positions` (`position_id`)
