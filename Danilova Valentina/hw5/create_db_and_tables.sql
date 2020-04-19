@@ -23,8 +23,8 @@ CREATE TABLE timeslots (
 	timeslot_id INT NOT NULL AUTO_INCREMENT,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
-    weekday VARCHAR(32) NOT NULL,
-    PRIMARY KEY(timeslot_id)   
+    weekday INT NOT NULL,
+    PRIMARY KEY(timeslot_id)
 );
 
 CREATE TABLE fencing_events (
@@ -110,5 +110,18 @@ CREATE TABLE taken_time (
         ON UPDATE CASCADE ON DELETE RESTRICT,
 	FOREIGN KEY(timeslot_id)
 	    REFERENCES timeslots(timeslot_id)
+        ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE events_attendance (
+	attendance_id INT NOT NULL AUTO_INCREMENT,
+    event_id INT NOT NULL,
+    member_id INT NOT NULL,
+    PRIMARY KEY(attendance_id),
+    FOREIGN KEY(event_id)
+		REFERENCES fencing_events(event_id)
+		ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY(member_id)
+	    REFERENCES members(member_id)
         ON UPDATE CASCADE ON DELETE RESTRICT
 );
