@@ -1,0 +1,8 @@
+USE UserPaymentSession;
+CREATE TABLE IF NOT EXISTS sessions (
+    session_id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
+    begin_dttm TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    end_dttm TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
