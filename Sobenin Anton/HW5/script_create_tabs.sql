@@ -102,10 +102,10 @@ CREATE TABLE IF NOT EXISTS rs.raw (
 	raw_id INT NOT NULL AUTO_INCREMENT,
     coord_c POINT NOT NULL DEFAULT (point(0,0)),
     link VARCHAR(1024) DEFAULT ('example.com'),
-    ds_id INT NOT NULL DEFAULT 1,
+    sli_id INT NOT NULL DEFAULT 1,
     PRIMARY KEY (raw_id),
-    FOREIGN KEY (ds_id)
-		REFERENCES rs.datasource (ds_id)
+    FOREIGN KEY (sli_id)
+		REFERENCES rs.sli (sli_id)
         ON UPDATE CASCADE ON DELETE RESTRICT
 );
 INSERT INTO rs.raw
